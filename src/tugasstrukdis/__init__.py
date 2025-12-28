@@ -58,35 +58,40 @@ def parse_method(java_method: jt.MethodDeclaration) -> list[Variable]:
     return list(lvt.values())
 
 
-def parse_class(java_class: jt.ClassDeclaration, depth=0) -> None:
-    """Parse a Java class, parsing it's methods and inner classes"""
-    print(f"{depth * INDENTATION * ' '}{java_class.name}$")
-    depth += 1
+def parse_class(java_class: jt.ClassDeclaration, depth=0) :
+    class_data = {
+        "class_name": java_class.name,
+        "methods": [],
+        "inner_classes": [] # Menampung inner class (rekursif)
+    }
     for statement in java_class.body:
         if isinstance(statement, jt.MethodDeclaration):
-            print(f"{depth * INDENTATION * ' '}{statement.name}()")
-            vl: list[Variable] = parse_method(statement)
-            for variable in vl:
-                print(f"{(depth + 1) * INDENTATION * ' '}{variable}")
-            print(build_interference_matrix(vl))
+            variables = parse_method(statement)
+            matrix = build_interference_matrix(variables) # Kita simpan juga matrix-nya
+            
+            method_data = {
+                "method_name": statement.name,
+                "variables": variables,
+                "matrix": matrix # Disimpan barangkali nanti mau ditampilkan di UI
+            }
+            class_data["methods"].append(method_data)
         elif isinstance(statement, jt.ClassDeclaration):
-            parse_class(statement, depth=depth)
+           inner_class_data = parse_class(statement) # Panggil fungsi ini lagi (rekursif)
+           class_data["inner_classes"].append(inner_class_data)
+    return class_data
 
-
-def main() -> None:
-    """Main function"""
-    code: str
-    with open("assets/Sample.java") as f:
-        code = f.read()
+def analyze_java_code(code: str):
+  try:
 
     ast = javalang.parse.parse(code)
-
-    first: bool = True
+    all_classes_data=[]
     for node in ast.types:
-        if first:
-            first = False
-        else:
-            print("")
+        if isinstance(node,jt.ClassDeclaration):
+           result=parse_class(node)
+           all_classes_data.append(result)
+    return {"data": all_classes_data}
 
-        if isinstance(node, jt.ClassDeclaration):
-            parse_class(node)
+  except Exception as e:
+        return {"error": str(e)}
+
+       
