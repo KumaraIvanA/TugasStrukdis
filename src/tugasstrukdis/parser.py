@@ -3,7 +3,6 @@ import javalang
 import javalang.tree as jt
 from dataclasses import dataclass
 from collections import defaultdict
-from .graph import Graph
 
 
 INDENTATION = 4
@@ -78,12 +77,10 @@ class JavaClass:
                 self.inner_classes.append(JavaClass(statement))
 
 
-class JavaFile:
-    def __init__(self, filepath: str):
-        self.code: str
-        self.classes: list[JavaClass]
-        with open(filepath) as f:
-            code = f.read()
+class JavaCode:
+    def __init__(self, code: str):
+        self.code: str = code
+        self.classes: list[JavaClass] = []
 
         ast = javalang.parse.parse(code)
         for node in ast.types:

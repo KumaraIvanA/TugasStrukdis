@@ -1,8 +1,8 @@
 from dataclasses import dataclass
 from collections import defaultdict
 import matplotlib.pyplot as plt
-import gcol
 import networkx as nx
+import gcol
 
 
 class Graph:
