@@ -66,7 +66,7 @@ if tombol_submit:
                 for idx, method in enumerate(cls.methods):
                     col = cols[idx % 2]
                     with col:
-                        st.subheader(method.name)
+                        st.subheader(f"{method.name}()")
 
                         matrix = method.interference_matrix
                         if method.variables:
