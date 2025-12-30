@@ -18,11 +18,17 @@ class Variable:
     @staticmethod
     def interfere(var1: Variable, var2: Variable) -> bool:
         """Return true if two variables overlap or false otherwise"""
+        if not var1.used or not var2.used:
+            return False
+
         return max(var1.life_start, var2.life_start) <= min(
             var1.life_end, var2.life_end
         )
 
-    def __str__(self):
+    def used(self) -> bool:
+        return self.life_start != self.life_end
+
+    def __str__(self) -> str:
         return f"{self.type} {self.name}: {self.life_start} - {self.life_end}"
 
 
@@ -31,9 +37,8 @@ class JavaMethod:
         self.name: str = javalang_method.name
         self.variables: list[Variable] = []
         self.interference_matrix: defaultdict[str, dict[str, bool]]
-        self.start_line: int = javalang_method.body[0].position.line - 1
+        self.start_line: int = javalang_method.position.line - 1
         self.end_line: int = javalang_method.body[-1].position.line + 1
-        print(self.start_line, self.end_line)
 
         lvt: dict[str, Variable] = {}
 
@@ -45,7 +50,7 @@ class JavaMethod:
                         declarators.type.name,
                         declarator.name,
                         statement.position.line,
-                        self.end_line - 1,
+                        statement.position.line,
                     )
                     lvt[var.name] = var
 

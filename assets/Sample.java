@@ -30,7 +30,9 @@ class Sample2 {
 	public static void testMethod1(String[] args) {
 		int a = 1;
 		int b = 2;
-		System.out.println(a + b);
+		int c = 3;
+
+		a = Math.min(a, b);
 	}
 
 	class sampleInnerClass {
