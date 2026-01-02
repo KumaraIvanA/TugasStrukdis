@@ -1,0 +1,9 @@
+ streamlit
+ dataclasses
+ collections
+ matplotlib.pyplot
+ networkx 
+ gcol
+ javalang
+ base64
+ 
