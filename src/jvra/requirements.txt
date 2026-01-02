@@ -1,8 +1,6 @@
  streamlit
  matplotlib
  networkx 
- gcol
  javalang
- base64
  pandas
  
