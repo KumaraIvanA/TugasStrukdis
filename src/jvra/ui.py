@@ -1,8 +1,21 @@
+import sys
+import os
+
+
+# 1. Ambil lokasi folder tempat ui.py berada (yaitu folder 'jvra')
+current_dir = os.path.dirname(os.path.abspath(__file__))
+
+# 2. Ambil folder di atasnya (yaitu folder 'src')
+src_dir = os.path.dirname(current_dir)
+
+# 3. Masukkan folder 'src' ke sistem pencarian Python
+# Supaya python bisa mengenali perintah "from jvra..."
+sys.path.append(src_dir)
+# -----------------------------------
 from jvra.sidebarui import set_sidebar_background
 from jvra.parser import JavaCode, JavaClass, JavaMethod
 from jvra.graph import Graph
 import streamlit as st
-import graphviz
 import pandas as pd
 import networkx as nx
 import matplotlib.pyplot as plt
