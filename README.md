@@ -28,4 +28,4 @@ Di halaman utama, kami menyediakan dua cara mudah untuk menganalisis kode Java A
 
 
 ## Tampilan jika anda sudah mengupload file Java
-n<img src="assets/tampilan.png" alt="Tampilam Aplikasi" width="100%">
+<img src="assets/tampilan.png" alt="Tampilam Aplikasi" width="100%">
