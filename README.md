@@ -20,7 +20,7 @@ Berikut adalah teknologi dan library yang digunakan dalam pengembangan aplikasi 
 
 
 ## Panduan Penggunaan Fitur
-![Tampilan Fitur](assets/fitur1.png)
+![Tampilan Fitur](./assets/fitur1.png)
 
 Di halaman utama, kami menyediakan dua cara mudah untuk menganalisis kode Java Anda. Anda bisa melihat tombol **SUBMIT** untuk mengunggah file `.java` dari komputer, atau area teks **Paste kode Java** jika Anda ingin menyalin dan menempel kode secara langsung.
 
@@ -28,4 +28,4 @@ Di halaman utama, kami menyediakan dua cara mudah untuk menganalisis kode Java A
 
 
 ## Tampilan jika anda sudah mengupload file Java
-![Tampilan Aplikasi](assets/tampilan.png)
+![Tampilan Aplikasi](./assets/tampilan.png)
