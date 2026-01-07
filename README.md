@@ -1,2 +1,2 @@
 # TugasStrukdis
-* 1.Cara Menjalankan Aplikasi
+1.Cara Menjalankan Aplikasi
